@@ -166,9 +166,22 @@ action = policy（state）
 
 也就是说，如果信息状态是可知的，那么所有历史信息都可以丢掉，仅需要 t 时刻的信息状态就可以了。例如：环境状态是Markov的，因为环境状态是环境包含了环境决定下一个观测/奖励的所有信息；同样，（完整的）历史 Ht 也是马尔可夫的。
 
+-------------------------------------------------------------
 
------TBD-----
+分割线
+
+-------------------------------------------------------------
+
 ## Q-Learning -- Q学习
+
+[Q-Learning](https://www.yanxishe.com/TextTranslation/1394)
+
+[Bellman方程](https://zhuanlan.zhihu.com/p/35261164)
+
+Watch Q-Learning Video]：
+链接: https://pan.baidu.com/s/1xInpqQ5Ev7NWLDYkBA_gJA 提取码: tiiy
+     Q-learning with numpy and OpenAI Taxi-v2.mp4
+
 
 ## Deep Q-Learning -- 深度Q学习
 
