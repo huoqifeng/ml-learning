@@ -178,12 +178,38 @@ action = policy（state）
 
 [Bellman方程](https://zhuanlan.zhihu.com/p/35261164)
 
-Watch Q-Learning Video]：
+Watch Q-Learning Video：
 链接: https://pan.baidu.com/s/1xInpqQ5Ev7NWLDYkBA_gJA 提取码: tiiy
      Q-learning with numpy and OpenAI Taxi-v2.mp4
 
+[Q-Learning Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/tree/master/Q%20learning/FrozenLake)
+
 
 ## Deep Q-Learning -- 深度Q学习
+
+为什么需要 Deep Q-Learning？
+一个拥有巨大状态空间（数百万不同state）的大环境，没有办法列出Q-Table，我们用一个黑盒子的NeuralNetwork来替代Q-Table
+
+![img](img/rl-intro-deeplearning-1.png)
+
+### 几个问题
+
+- 时间限制的问题
+- 为什么使用卷积网络
+- 避免忘记以前的经历
+- 减少经验之间的相关性（探索）
+
+[Deep Q-Learning](https://www.yanxishe.com/TextTranslation/1395)
+
+[Explain of CNN](https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721)
+
+[Explain if SGD](https://zhuanlan.zhihu.com/p/25765735)
+
+Watch Q-Learning Video：
+链接: https://pan.baidu.com/s/1xInpqQ5Ev7NWLDYkBA_gJA 提取码: tiiy
+     Deep Q Learning with Tensorflow and Space Invaders.mp4
+
+[Deep Q-Learning Notebook](https://gist.github.com/simoninithomas/7611db5d8a6f3edde269e18b97fa4d0c#file-deep-q-learning-with-doom-ipynb)
 
 ## Policy Gradients -- 策略梯度
 
