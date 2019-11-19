@@ -267,9 +267,96 @@ Watch Policy Gradients Video：
 
 ## A2C （Advantage Actor Critic） & A3C （Asynchronous Advantage Actor Critic）
 
+前面我们学习了：
+
+- 基于数值的方法（Q-learning，Deep Q-learning）：
+该方法是学习一个值函数，该值函数将每组状态、动作映射到一个数值。多亏了这个方法， 可以找到了每个状态的最佳行动 - 具有最大Q值的行动。当行动个数有限时，该方法很有效。
+
+- 基于策略函数的方法（策略梯度方法之REINFORCE 算法）：
+我们不使用值函数，而直接优化策略。当动作空间是连续的或随机时，这很有效。该方法的主要问题是找到一个好的评分函数来计算策略的好坏程度。我们使用episode的总奖赏作为评分函数（每个Episode中获得的奖励之和）。
+
+但这两种方法都有很大的缺点。这就是为什么今天我们将研究一种新型的强化学习方法，我们称之为“混合方法”: Actor Critic（AC）。我们将用到两个神经网络：
+
+衡量所采取的行动的好坏的评价器（critic）（基于值函数）
+控制智能体行为方式的行动者（actor）（基于策略）
+
+- 两种不同的策略：异步或同步
+A2C（又名优势演员评论家）
+A3C（又名异步优势演员评论家）
+在A3C中，我们不使用经验回放，因为这需要大量内存。不同的是，我们可以并行的在多个环境实例上异步执行不同的智能体。（可多核CPU跑）每个work（网络模型的副本）将异步地更新全局网络。
+另一方面，A2C与A3C的唯一区别是A2C是同步更新全局网络。我们等到所有works完成训练后，计算他们的梯度的均值，以更新全局网络参数。
+
+[简单介绍A3C （第五部分）](https://www.yanxishe.com/TextTranslation/1407)
+
+Watch A2C Video：
+链接: https://pan.baidu.com/s/1xInpqQ5Ev7NWLDYkBA_gJA 提取码: tiiy
+     Build an A2C agent that learns to play Sonic with Tensorflow.mp4
+
+[A2C Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/tree/master/A2C%20with%20Sonic%20the%20Hedgehog)
+
 ## PPO （Proximal Policy Optimization） -- 近端策略优化
 
+### 问题的提出
+
+- 策略梯度（PG）目标函数存在的问题
+![img](img/rl-ppo-1.png)
+PG的思想是采用上面的函数一步步做梯度上升（等价于负方向的梯度下降）使智能体在行动中获取更高的回报奖励。
+然而，PG算法存在步长选择问题（对step size敏感）：
+步长太小，训练过于缓慢
+步长太大，训练中误差波动较大
+
+面对训练过程波动较大的问题时，PPO可以轻松应对。
+PPO近端策略优化的想法是通过限定每步训练的策略更新的大小，来提高训练智能体行为时的稳定性。
+为了实现上述想法，PPO引入了一个新的目标函数“Clipped surrogate objective function”（大概可以翻译为：裁剪的替代目标函数），通过裁剪将策略更新约束在小范围内。   
+
+- 裁剪替代目标函数 Clipped Surrogate Objective Function
+...
+
+详细内容参阅：
+[以刺猬索尼克游戏为例讲解PPO（第六部分）](https://www.yanxishe.com/TextTranslation/1408)
+
+[PPO Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/tree/master/PPO%20with%20Sonic%20the%20Hedgehog)
+
 ## Curiosity-Driven learning -- 好奇心驱动的学习
+
+今天我们来学习"好奇心驱动学习"，是目前深度强化学习中最令人激动且最有前景的策略之一。
+
+增强学习是构筑在奖励假设这一理论基础上的，其想法是每个目标都能被定义为最大化奖励。不过目前外在奖励(extrinsic rewards, 也被称为环境给与的奖励)是通过人工硬编码实现的，限于人力其规模不能扩展。
+
+"好奇心驱动的学习"其理念是为agent构建一个内生的 (intrinsic, 由agent自己产生)的奖励函数。这意味着agent会自我学习，因为他将不但成为学生，同时也会成为反馈者。
+
+![img](img/rl-curiosity-1.png)
+
+### 强化学习中两个主要问题
+- 首先,稀疏奖励 问题
+动作与其反馈(奖励)之间存在时间差。如果每个动作都有反馈，agent可以快速学习，如此获得快速反馈。
+拿Space Invaders游戏来说，如果你射杀一个敌人，就会得到1份奖励。结果就是，你会明白这个在那个状态下这个动作是好的。
+
+![img](img/rl-curiosity-problem-1-1.png)
+
+感谢这些奖励，我们的agent知道了这个动作在那个状态是好的。
+
+可是，在复杂游戏里比如即时战略游戏，对应于你每个动作，你不会有直接奖励。因此一个不好的决定，可能在几小时后才会有反馈。
+比如在帝国时代II中，在第一张图里agent决定建造一个兵营，并专注于采集资源。在第二张图里 (几小时后)，敌人摧毁了我方的兵营，结果是我方有大量的资源，但是我方不能造兵，于是我方就死了。
+敌人摧毁了我方的兵营
+![img](img/rl-curiosity-problem-1-2.png)
+
+- 第二个大问题是，外在奖励不可扩展。
+因为在实验环境中，可以用人工实现一个奖励函数。但是我们如何将其扩展到更大更复杂的环境里去呢?
+
+
+解决方案是开发一个由agent内生的奖励函数(由agent自己产生)。我们把这个奖励函数叫做好奇心。
+
+### 新的奖励函数: 好奇心
+好奇心是一种内生奖励，等价于给定当前状态agent预测自身行为结果的错误(也可以说给定当前状态和动作，预测下一个状态)。
+那为什么呢? 因为好奇心的想法是鼓励agent去执行一些动作，减少agent预测当其执行动作后产生的后果的不确定性。 (不确定性将会变得较高，在这些地方agent花费较少时间训练, 或处在一些复杂作用的区域).
+所以，度量错误需要构建一个环境的作用力模型，给定当前状态和动作a，预测下一个状态。
+这里要问的是，如何计算这个错误?
+为了计算好奇心，我们会使用第一篇论文里介绍的Intrinsic Curiosity 模块。
+
+详细内容请参阅：
+[好奇心驱动的学习](https://www.yanxishe.com/TextTranslation/1188)
+
 
 ## 让我们动手吧
 [Git -- Deep Reinforcement Learning Course](https://github.com/simoninithomas/Deep_reinforcement_learning_Course)
