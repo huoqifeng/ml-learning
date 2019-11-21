@@ -240,6 +240,22 @@ Watch Q-Learning Video：
 - 时间限制的问题 (why picture stack)
 - 为什么使用卷积网络
   [Explain of CNN](https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721)
+
+  Good clasifier:
+
+  ![img](img/cnn-good.png)
+
+  Bad clasifier:
+
+  ![img](img/cnn-err.png)
+
+  What abot this:
+
+  ![img](img/cnn-1.gif)
+
+  CNN:
+  ![img](img/cnn-2.png)
+
 - 避免忘记以前的经历
 - 减少经验之间的相关性（探索）
 
