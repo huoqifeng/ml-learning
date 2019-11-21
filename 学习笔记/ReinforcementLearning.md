@@ -163,6 +163,7 @@ action = policy（state）
 1. 随机：输出行动上的分别概率。
 ![img](img/rl-intro-policy-base-2.png)
 ![img](img/rl-intro-policy-base-3.png)
+
 正如我们在此处看到的，该策略直接指出了针对每个步骤采取的最佳操作。
 
 如果这个图不好理解的话，我们可以想象一下一个次优策略，1）如果能向向前就一直向前 2）当不能向前的时候（撞墙了）就转向 3）撞到右面的墙就向右转 4）撞到下面的墙就左转。结果是比上面的图多走两步到达
@@ -236,14 +237,13 @@ Watch Q-Learning Video：
 
 ### 几个问题
 
-- 时间限制的问题
+- 时间限制的问题 (why picture stack)
 - 为什么使用卷积网络
+  [Explain of CNN](https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721)
 - 避免忘记以前的经历
 - 减少经验之间的相关性（探索）
 
 [Deep Q-Learning](https://www.yanxishe.com/TextTranslation/1395)
-
-[Explain of CNN](https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721)
 
 [Explain if SGD](https://zhuanlan.zhihu.com/p/25765735)
 
