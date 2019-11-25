@@ -269,6 +269,10 @@ Watch Q-Learning Video：
 
 [Deep Q-Learning Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/tree/master/Deep%20Q%20Learning)
 
+[Explain np.stack](https://www.geeksforgeeks.org/numpy-stack-in-python/)
+
+[Explain of tf.con2d](https://missinglink.ai/guides/tensorflow/tensorflow-conv2d-layers-practical-guide/)
+
 ## Policy Gradients -- 策略梯度
 在过去的两篇关于Q-学习和深度Q学习的文章中，我们完成了基于价值的强化学习算法学习。在给定一个状态下，我们选择有最高Q值（在所有状态下最大的期望奖励）的行动。因此，在基于价值的学习中，一个策略存在仅仅出于这些行动价值的评估。
 今天，我们将学习名为策略梯度的基于策略的强化学习技术。
