@@ -267,7 +267,7 @@ Watch Q-Learning Video：
 链接: https://pan.baidu.com/s/1xInpqQ5Ev7NWLDYkBA_gJA 提取码: tiiy
      Deep Q Learning with Tensorflow and Space Invaders.mp4
 
-[Deep Q-Learning Notebook](https://gist.github.com/simoninithomas/7611db5d8a6f3edde269e18b97fa4d0c#file-deep-q-learning-with-doom-ipynb)
+[Deep Q-Learning Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/tree/master/Deep%20Q%20Learning)
 
 ## Policy Gradients -- 策略梯度
 在过去的两篇关于Q-学习和深度Q学习的文章中，我们完成了基于价值的强化学习算法学习。在给定一个状态下，我们选择有最高Q值（在所有状态下最大的期望奖励）的行动。因此，在基于价值的学习中，一个策略存在仅仅出于这些行动价值的评估。
