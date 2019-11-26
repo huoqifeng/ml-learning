@@ -327,6 +327,14 @@ Watch Policy Gradients Video：
 
 [Policy Gradients Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/tree/master/Policy%20Gradients)
 
+### 策略梯度的回顾
+
+![img](img/pg-arch.png)
+
+- 通过CNN对策略不停的学习和优化，最终得到每一个状态下所能采取的动作的概率分布。
+- 学习的过程就是优化这个概率分布的过程
+- 每学习一遍epoch就更新一次分布
+
 ## A2C （Advantage Actor Critic） & A3C （Asynchronous Advantage Actor Critic）
 
 前面我们学习了：
